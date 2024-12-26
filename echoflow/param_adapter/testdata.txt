@@ -1,0 +1,10 @@
+可通过下面的命令添加或者修改参数配置
+curl -d '{"module":1, "type":3, "param_name":"DPOS", "param_value":2}' -H "Content-Type: application/json" -X POST http://localhost:8000/
+其中 module 表示需要调整的模块，目前仅支持共识层，填1
+type 表示模块中的子模块，对于共识层是4种不同的算法，目前支持 tbft，填1；dpos，填3；maxbft，填4
+param_name 表示需要调整的参数名，可查看 struct.go 中的变量名
+param_value 表示调整后的参数数值
+curl命令不要用 windows cmd 命令行调试，可以使用 bash 或者 linux 的命令行
+可通过下面的命令查看是否成功添加到底链配置，注意不同算法的 sdk-conf-path 不同
+./cmc client chainconfig query \
+--sdk-conf-path=./testdata/sdk_config.yml

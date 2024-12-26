@@ -1,0 +1,4 @@
+*.log
+*.log.*
+param_adapter
+/crypto-config

@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-mac
+spec:
+  selector:
+    matchLabels:
+      app: mysql-mac
+  template:
+    metadata:
+      labels:
+        app: mysql-mac
+    spec:
+      # volumes:
+      #   - name: init
+      #     configMap:
+      #       name: mysql-init-config
+      #   - name: sql
+      #     configMap:
+      #       name: mysql-sql-config
+      containers:
+      - name: mysql-mac
+        image: mysql:8.0
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "100m"  
+          limits:
+            memory: "1Gi"
+            cpu: "4"
+        env:
+          - name: MYSQL_DATABASE
+            value: chainmaker_recorder
+          - name: MYSQL_ROOT_PASSWORD
+            value: "123456"
+          - name: MYSQL_USER
+            value: chainmaker
+          - name: MYSQL_PASSWORD
+            value: chainmaker
+        # volumeMounts:
+        #   - name: init
+        #     mountPath: /docker-entrypoint-initdb.d
+        #   - name: sql
+        #     mountPath: /testdata/mysql/sql
+        ports:
+        - containerPort: 3306
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-mysql
+spec:
+  selector:
+    app: mysql-mac
+  ports:
+  - port: 3306
+    targetPort: 3306

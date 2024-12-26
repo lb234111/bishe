@@ -1,0 +1,17 @@
+All: true
+TransactionPoolInputThroughputF: true
+NetP2pTransmissionLatencyF: true
+PeerMessageThroughputF: true #
+DbStateWriteRateF: true 
+DbStateReadRateF: true
+TxQueueDelayF: true # 
+BlockCommitDurationStartF: true
+BlockCommitDurationEndF: true
+BlockValidationEfficiencyStartF: true
+BlockValidationEfficiencyEndF: true
+TxDelayStartF: true # 
+TxDelayEndF: true
+BlockTxConflictRateF: true
+ContractExecuteEfficiencyF: true #
+ConsensusTbftCostF: true
+Cpumem: true

@@ -1,0 +1,23 @@
+func BuildForwardTable(node_id):
+	// 最大node id的二进制位数就是一个节点的forward table需要的bucket数量
+	len := binary_bit(max_node_id);
+	base := 0;
+	for dis := 0 to len - 1 do
+		// left_low和left_high分别对应左侧子树的最小和最大值
+		left_low := base;
+		left_high := base + 1 << (len - dis - 1) - 1;
+		if left_high > max_node_id then
+			continue;
+		// right_low和right_high分别对应右侧子树的最小和最大值
+		right_low = left_high + 1;
+		right_high = base + 1 << (len - dis) - 1;
+		right_high = right_high > node_num - 1 ? node_num - 1 : right_high;
+		if InRange(node_id, left_low, left_high) then
+			base = left_low;
+			InsertRightNodeIntoBucket(bucket, right_low, right_high)
+		else
+			base = right_low;
+			InsertLeftNodeIntoBucket(bukcet, left_low, left_high)
+		InsertIntoForwardTable(table, bucket)
+	return table	
+

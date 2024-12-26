@@ -1,0 +1,7 @@
+log
+__*
+build
+dist
+test*
+*.spec
+.idea

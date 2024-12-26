@@ -1,0 +1,7 @@
+framework/worker/chainmaker/config_files/chainamker/tmpUserConfig/*.yml
+*.log
+test1.go
+.VSCodeCounter
+framework/main/*.json
+framework/data/*
+dataAnalyst/*
